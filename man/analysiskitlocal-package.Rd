@@ -71,6 +71,7 @@ copy_loa_template("resources")   # a workbook to start from
 Useful links:
 \itemize{
   \item \url{https://github.com/mixedmigrationcentre/run-analysis-locally}
+  \item \url{https://mixedmigrationcentre.github.io/analysiskitlocal/}
   \item Report bugs at \url{https://github.com/mixedmigrationcentre/run-analysis-locally/issues}
 }
 

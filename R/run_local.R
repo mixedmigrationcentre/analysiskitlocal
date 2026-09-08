@@ -423,43 +423,21 @@ copy_loa_template <- function(dir = ".",
 #' disaggregation, taking seconds rather than minutes.
 #'
 #' Nothing is installed here. The two optional GitHub packages are not on CRAN,
-#' so the `install` column gives the command to run.
+#' so the `install` column gives the command to run. [load_packages()] does the
+#' installing.
+#'
+#' The roster itself lives in [ak_package_roster()], so this function and
+#' [load_packages()] cannot disagree about what is optional or where the GitHub
+#' packages come from.
 #'
 #' @return A data frame with `package`, `need`, `installed`, `version`,
 #'   `install` and `purpose`.
+#' @seealso [load_packages()] to install what is missing.
 #' @export
 #' @examples
 #' check_analysis_packages()
 check_analysis_packages <- function() {
-  pkg <- function(package, need, purpose, repo = NA_character_) {
-    data.frame(
-      package = package, need = need, repo = repo, purpose = purpose,
-      stringsAsFactors = FALSE
-    )
-  }
-
-  required <- rbind(
-    pkg("dplyr", "required", "the analysis pipeline"),
-    pkg("tidyr", "required", "reshaping results into the wide table"),
-    pkg("stringr", "required", "question and choice labels"),
-    pkg("readxl", "required", "reading .xlsx datasets and List of Analysis workbooks"),
-    pkg("openxlsx", "required", "writing the results workbook"),
-    pkg(
-      "srvyr", "optional",
-      "the survey engine, used only when an analysis row sets a confidence level"
-    ),
-    pkg(
-      "analysistools", "optional",
-      "the survey engine, used only when an analysis row sets a confidence level",
-      repo = "impact-initiatives/analysistools"
-    ),
-    pkg(
-      "cleaningtools", "optional",
-      "rebuilding select_multiple parent columns, when recreate_sm_parents is TRUE",
-      repo = "impact-initiatives/cleaningtools"
-    ),
-    pkg("writexl", "optional", "the test suite only")
-  )
+  required <- ak_package_roster()
 
   installed <- vapply(
     required$package,

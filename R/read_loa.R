@@ -1752,6 +1752,32 @@ run_analysis_spec <- function(dataset,
                               spec,
                               pipeline = NULL,
                               ...) {
+  # The one divergence from Analysis Kit's copy of this file, and it is purely
+  # additive: a clear message where there used to be a baffling one.
+  #
+  # `dataset` must be the data frame. Handed the list that
+  # read_analysis_dataset() returns - an easy mistake, since
+  # check_analysis_inputs() and run_analysis_locally() both accept either -
+  # this used to fail deep inside apply_rename_map() with "missing value where
+  # TRUE/FALSE needed", which says nothing about the cause.
+  if (!is.data.frame(dataset)) {
+    stop(
+      paste0(
+        "dataset must be a data frame. ",
+        if (is.list(dataset) && "data" %in% names(dataset)) {
+          paste0(
+            "It looks like the list read_analysis_dataset() returns, so pass ",
+            "its data frame instead: run_analysis_spec(dataset$data, spec). ",
+            "Or use run_analysis_locally(), which accepts either."
+          )
+        } else {
+          "Read it with read_analysis_dataset() and pass the $data element."
+        }
+      ),
+      call. = FALSE
+    )
+  }
+
   if (loa_has_errors(spec$problems)) {
     errors <- spec$problems[spec$problems$severity == "error", , drop = FALSE]
     stop(

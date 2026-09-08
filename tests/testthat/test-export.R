@@ -61,14 +61,20 @@ test_that("an unusable folder is described rather than discovered at write time"
   dir.create(folder)
   expect_null(ak_check_folder(folder))
 
-  Sys.chmod(folder, "500")
-  # Tested empirically rather than by username: root, and some filesystems,
-  # ignore the mode bits entirely.
-  skip_if(
-    file.access(folder, mode = 2) == 0,
-    "this user can write to the folder regardless of its mode"
+  # The read-only branch is what stops a long run being lost to a folder that
+  # cannot be written to, so it has to be tested - but it cannot be provoked
+  # for real everywhere. Windows ignores the mode bits for the owner, and so
+  # does root, which meant this assertion skipped on the two platforms the
+  # package actually runs on and was therefore never exercised at all.
+  #
+  # So file.access() is mocked instead: ak_check_folder()'s job is to turn a
+  # non-zero answer into a usable message, and that is what is checked.
+  local_mocked_bindings(
+    file.access = function(names, mode = 0) stats::setNames(-1L, names),
+    .package = "base"
   )
   expect_match(ak_check_folder(folder), "cannot be written to")
+  expect_match(ak_check_folder(folder), folder, fixed = TRUE)
 })
 
 test_that("export settings split the pipeline's value columns into stats and counts", {

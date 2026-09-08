@@ -28,7 +28,10 @@ if (requireNamespace("attachment", quietly = TRUE)) {
 # ADDS to Suggests - it does not demote a package that `::` detection has
 # already put in Imports (verified: it does not). So the curated split is
 # restored here, after the fact and deterministically.
-optional_deps <- c("srvyr", "analysistools", "cleaningtools")
+# pak is in the list because load_packages() calls pak::pkg_install(), which
+# attachment detects - but pak is a bootstrap that installs itself on demand,
+# not something this package depends on.
+optional_deps <- c("srvyr", "analysistools", "cleaningtools", "pak")
 
 if (requireNamespace("desc", quietly = TRUE)) {
   d <- desc::desc(file = "DESCRIPTION")
