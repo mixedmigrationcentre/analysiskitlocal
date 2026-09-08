@@ -74,8 +74,7 @@ Three packages are **optional**, and only one feature reaches them:
 | Package | Needed for | Install |
 |---|---|---|
 | `srvyr` | confidence intervals (an `analysis` row with a `level`) | `install.packages("srvyr")` |
-| `analysistools` | the same | `remotes::install_github("impact-initiatives/analysistools")` |
-| `cleaningtools` | rebuilding select_multiple parent columns (`recreate_sm_parents`) | `remotes::install_github("impact-initiatives/cleaningtools")` |
+
 
 **If you never set a `level`, you never need them.** The fast tabulation engine
 produces the same point estimates without a survey design, and does it in a
@@ -88,7 +87,6 @@ check_analysis_packages()
 #>         package     need installed version                            install
 #> 1         dplyr required      TRUE   1.1.4
 #> 6         srvyr optional     FALSE    <NA>        install.packages('srvyr')
-#> 7 analysistools optional     FALSE    <NA> remotes::install_github('impac...
 ```
 
 ---
@@ -585,8 +583,7 @@ Measured on a 6,000 × 210 export, 200-level disaggregation, 10 questions:
 | `fast` (tabulation) | 0.05 s |
 
 `engine = "auto"` (the default) routes each row by whether it asked for an
-interval. `"fast"` forces tabulation everywhere and needs neither `srvyr` nor
-`analysistools`. `"survey"` forces the old behaviour.
+interval. `"fast"` forces tabulation everywhere and does not need `srvyr`. `"survey"` forces the old behaviour.
 
 `min_group_n` is the other lever: a 200-town disaggregation usually contains
 towns with a handful of interviews, whose estimates are not reportable and are

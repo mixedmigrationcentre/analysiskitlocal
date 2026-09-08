@@ -1,6 +1,6 @@
 Package: analysiskitlocal
 Title: Run MMC 4Mi Analyses Locally from a Dataset and a List of Analysis
-Version: 0.1.0
+Version: 2026.09.1
 Authors@R: c(
     person("Abubakar", "Athman", , "abubakar.athman@mixedmigration.org", role = c("aut", "cre")),
     person("Mixed Migration Centre", role = c("cph", "fnd"))
@@ -15,7 +15,8 @@ Description: The Analysis Kit workflow as a package. Reads a research
     functions so a run can be scripted, scheduled or repeated without an
     interface.
 License: MIT + file LICENSE
-URL: https://github.com/mixedmigrationcentre/run-analysis-locally
+URL: https://github.com/mixedmigrationcentre/run-analysis-locally,
+    https://mixedmigrationcentre.github.io/analysiskitlocal/
 BugReports: 
     https://github.com/mixedmigrationcentre/run-analysis-locally/issues
 Depends:
@@ -32,6 +33,7 @@ Imports:
 Suggests:
     analysistools,
     cleaningtools,
+    pak,
     srvyr,
     survey,
     testthat (>= 3.0.0),

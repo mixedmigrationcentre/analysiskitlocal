@@ -21,8 +21,16 @@ disaggregation, taking seconds rather than minutes.
 }
 \details{
 Nothing is installed here. The two optional GitHub packages are not on CRAN,
-so the \code{install} column gives the command to run.
+so the \code{install} column gives the command to run. \code{\link[=load_packages]{load_packages()}} does the
+installing.
+
+The roster itself lives in \code{\link[=ak_package_roster]{ak_package_roster()}}, so this function and
+\code{\link[=load_packages]{load_packages()}} cannot disagree about what is optional or where the GitHub
+packages come from.
 }
 \examples{
 check_analysis_packages()
+}
+\seealso{
+\code{\link[=load_packages]{load_packages()}} to install what is missing.
 }
