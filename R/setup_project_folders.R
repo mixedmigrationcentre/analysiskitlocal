@@ -40,10 +40,7 @@ setup_project_folders <- function(
   standard_folders <- c(
     "data",
     "resources",
-    "output",
-    "output/other_responses",
-    "output/follow_ups",
-    "output/final"
+    "output"
   )
 
   all_folders <- c(standard_folders, extra_folders)

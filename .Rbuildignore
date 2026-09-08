@@ -1,2 +1,7 @@
 ^runAnalysisLocally\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^\.Rhistory$
+^\.RData$
+^README\.Rmd$
