@@ -1,11 +1,43 @@
-Package: runAnalysisLocally
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Package: analysiskitlocal
+Title: Run MMC 4Mi Analyses Locally from a Dataset and a List of Analysis
+Version: 0.1.0
+Authors@R: c(
+    person("Abubakar", "Athman", , "abubakar.athman@mixedmigration.org", role = c("aut", "cre")),
+    person("Mixed Migration Centre", role = c("cph", "fnd"))
+  )
+Description: The Analysis Kit workflow as a package. Reads a research
+    dataset and a List of Analysis (LoA) workbook, validates the two
+    against each other, runs the requested proportions, means, medians,
+    ratios, selection counts and choice combinations across every
+    disaggregation, and writes the results to an MMC-branded Excel
+    workbook. The analysis engine, the LoA reader and the exporter are the
+    same code the Analysis Kit Shiny application uses, exposed as ordinary
+    functions so a run can be scripted, scheduled or repeated without an
+    interface.
+License: MIT + file LICENSE
+URL: https://github.com/mixedmigrationcentre/run-analysis-locally
+BugReports: 
+    https://github.com/mixedmigrationcentre/run-analysis-locally/issues
+Depends:
+    R (>= 4.1)
+Imports:
+    dplyr,
+    openxlsx,
+    readxl,
+    stats,
+    stringr,
+    tidyr,
+    tools,
+    utils
+Suggests:
+    analysistools,
+    cleaningtools,
+    srvyr,
+    survey,
+    testthat (>= 3.0.0),
+    withr,
+    writexl
+Config/roxygen2/version: 8.1.0
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 8.1.0

@@ -1,0 +1,48 @@
+path.n: NAMESPACE
+path.d: DESCRIPTION
+dir.r: R
+dir.v: vignettes
+dir.t: tests
+
+# Packages that must end up in Suggests.
+#
+# NOTE what this does and does not do. extra.suggests only ADDS to Suggests. It
+# does NOT demote a package that `::` detection has already filed under
+# Imports - tested, and it does not. srvyr, analysistools and cleaningtools are
+# all called by name in R/analysis_pipeline.R, so attachment puts them in
+# Imports every run, and dev/setup.R step 1b moves them back afterwards. That
+# step is what actually holds the line; this key is here for `survey`.
+#
+# survey is the one that needs it: srvyr pulls survey in, and the pipeline only
+# touches it through options(survey.lonely.psu = ), which is an option name
+# rather than a namespace call, so attachment cannot see it at all and would
+# otherwise drop it from DESCRIPTION entirely.
+extra.suggests:
+  - survey
+  - srvyr
+  - analysistools
+  - cleaningtools
+
+# Not packages - local variables that happen to hold a package name at run
+# time. attachment reads the first argument of requireNamespace() literally:
+#
+#   R/analysis_pipeline.R:57   requireNamespace(pkg, quietly = TRUE)
+#                              ... pkg is ck_require_pkg()'s own argument
+#   R/run_local.R:466          function(p) requireNamespace(p, ...)
+#                              ... p is the vapply() lambda's argument
+#
+# Without these it goes looking for packages called "pkg" and "p" and, with
+# must.exist below, stops with:
+#   Error in att_to_desc_from_is(): Packages pkg & p are missing or misspelled.
+pkg_ignore:
+  - pkg
+  - p
+
+document: yes
+normalize: yes
+inside_rmd: ~
+
+# Left on deliberately: with pkg_ignore set, this still catches a genuine typo
+# in a real package name, which is what it is for.
+must.exist: yes
+check_if_suggests_is_installed: yes
