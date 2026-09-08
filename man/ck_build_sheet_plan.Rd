@@ -40,47 +40,6 @@ ck_build_sheet_plan(
 \item{max_sheets}{Maximum number of sheets to allow.}
 
 \item{say}{Progress function.}
-
-\item{order_groups_by_n}{Logical, default \code{TRUE}. Order the group columns
-within each grouping variable by sample size, largest first, instead of the
-alphabetical order they come out of the pipeline in - so
-\verb{Female (n=740), Male (n=1152)} is written \verb{Male (n=1152), Female (n=740)},
-and \verb{No, Refused, Yes} becomes \verb{Yes, No, Refused}. Only blocks belonging to
-the same grouping variable move, so the merged variable band above them
-still spans a contiguous stretch and \code{Overall} stays put. Needs a count
-column: pass \code{total_columns} (e.g. \code{c("n", "n_total")}) or there is nothing
-to sort by and the order is left alone. \code{FALSE} restores the alphabetical
-order.
-
-This sets the sheet-wide order, from each group's sample size across the
-whole table. In \code{layout = "blocks"} it is then refined per question unless
-\code{order_groups_per_question} is turned off.}
-
-\item{order_groups_per_question}{Logical, default \code{TRUE}, \code{layout = "blocks"}
-only. Give every question its own group order, largest first by that
-question's own denominator, rather than having them all follow the
-sheet-wide order. Questions with different coverage then show their groups
-in different orders, which is the point.
-
-The permutation stays inside each grouping variable's run, so the merged
-variable band above the columns, the alternating block shading and the
-column widths are all unaffected - only which block sits in which column
-changes, and every header carries its own name and \verb{(n=)}.
-
-The cost: reading straight down a column no longer follows one group. The
-third column may be \code{Male} on one question and \code{Female} on the next. Set
-this to \code{FALSE} if you need the columns to line up down the sheet;
-\code{layout = "matrix"} always does, since there every question is a row under
-one shared header.}
-
-\item{drop_empty_groups}{Logical, default \code{TRUE}. Leave out any group whose
-sample size is zero on that sheet, in both the percentage panel and the
-count panel. A grouping variable's levels are fixed across the whole table,
-so a country with no interviews for the questions on a sheet would
-otherwise get a full block of empty (or \verb{#NUM!}) columns. Judged per sheet
-rather than per question, so the group columns stay aligned down the sheet;
-the Overall block is never dropped. Anything dropped is listed in a readme
-note, since silently omitting a country from a table is easy to misread.}
 }
 \value{
 A list with \code{sheets} (each with \code{name}, \code{description}, \code{rows},

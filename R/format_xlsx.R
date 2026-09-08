@@ -615,44 +615,6 @@ ck_safe_sheet_name <- function(x, taken = character(0)) {
 #' @param n_index Number of identifier columns before the statistics.
 #' @param split_by `"none"`, `"group_variable"` and/or column names.
 #' @param repeat_overall Logical. Repeat the Overall block on every sheet.
-#' @param order_groups_by_n Logical, default `TRUE`. Order the group columns
-#'   within each grouping variable by sample size, largest first, instead of the
-#'   alphabetical order they come out of the pipeline in - so
-#'   `Female (n=740), Male (n=1152)` is written `Male (n=1152), Female (n=740)`,
-#'   and `No, Refused, Yes` becomes `Yes, No, Refused`. Only blocks belonging to
-#'   the same grouping variable move, so the merged variable band above them
-#'   still spans a contiguous stretch and `Overall` stays put. Needs a count
-#'   column: pass `total_columns` (e.g. `c("n", "n_total")`) or there is nothing
-#'   to sort by and the order is left alone. `FALSE` restores the alphabetical
-#'   order.
-#'
-#'   This sets the sheet-wide order, from each group's sample size across the
-#'   whole table. In `layout = "blocks"` it is then refined per question unless
-#'   `order_groups_per_question` is turned off.
-#' @param order_groups_per_question Logical, default `TRUE`, `layout = "blocks"`
-#'   only. Give every question its own group order, largest first by that
-#'   question's own denominator, rather than having them all follow the
-#'   sheet-wide order. Questions with different coverage then show their groups
-#'   in different orders, which is the point.
-#'
-#'   The permutation stays inside each grouping variable's run, so the merged
-#'   variable band above the columns, the alternating block shading and the
-#'   column widths are all unaffected - only which block sits in which column
-#'   changes, and every header carries its own name and `(n=)`.
-#'
-#'   The cost: reading straight down a column no longer follows one group. The
-#'   third column may be `Male` on one question and `Female` on the next. Set
-#'   this to `FALSE` if you need the columns to line up down the sheet;
-#'   `layout = "matrix"` always does, since there every question is a row under
-#'   one shared header.
-#' @param drop_empty_groups Logical, default `TRUE`. Leave out any group whose
-#'   sample size is zero on that sheet, in both the percentage panel and the
-#'   count panel. A grouping variable's levels are fixed across the whole table,
-#'   so a country with no interviews for the questions on a sheet would
-#'   otherwise get a full block of empty (or `#NUM!`) columns. Judged per sheet
-#'   rather than per question, so the group columns stay aligned down the sheet;
-#'   the Overall block is never dropped. Anything dropped is listed in a readme
-#'   note, since silently omitting a country from a table is easy to misread.
 #' @param table_sheet_name Fallback sheet name.
 #' @param readme_sheet_name Reserved sheet name.
 #' @param max_sheets Maximum number of sheets to allow.

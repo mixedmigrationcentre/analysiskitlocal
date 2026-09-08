@@ -189,7 +189,11 @@ test_that("export hands the formatter a path in the chosen folder", {
     }
   )
 
-  expect_equal(dirname(path), folder)
+  # dirname() normalises every separator to "/", while tempfile() on Windows
+  # returns backslashes - so comparing the two literally fails there for no
+  # reason but separator style. The claim being made is that the file landed
+  # in the chosen folder, which is separator-agnostic.
+  expect_equal(dirname(path), gsub("\\\\", "/", folder))
   expect_match(basename(path), "^analysiskit_4mi_round9_")
   expect_equal(seen$file_path, path)
   expect_false(seen$overwrite)
