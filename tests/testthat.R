@@ -1,4 +1,4 @@
 library(testthat)
-library(runAnalysisLocally)
+library(analysiskitlocal)
 
-test_check("runAnalysisLocally")
+test_check("analysiskitlocal")

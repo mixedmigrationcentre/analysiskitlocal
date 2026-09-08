@@ -1,6 +1,6 @@
-# runAnalysisLocally
+# analysiskitlocal
 
-The [Analysis Kit](https://github.com/iAthman83/analysiskit) workflow as an R
+The [Analysis Kit](https://github.com/mixedmigrationcentre/analysiskit) workflow as an R
 package. It turns a 4Mi dataset and a **List of Analysis** workbook into a
 branded, MMC-styled results workbook — from the console, with no interface and
 no script to edit each round.
@@ -63,7 +63,7 @@ R 4.1 or later.
 
 ```r
 # install.packages("remotes")
-remotes::install_github("iAthman83/runAnalysisLocally")
+remotes::install_github("mixedmigrationcentre/run-analysis-locally")
 ```
 
 Installing brings in what every run needs: `dplyr`, `tidyr`, `stringr`,
@@ -96,7 +96,7 @@ check_analysis_packages()
 ## Quick start
 
 ```r
-library(runAnalysisLocally)
+library(analysiskitlocal)
 
 # 1. A folder structure to work in, if you want one
 setup_project_folders()          # creates data/, resources/, output/
@@ -200,7 +200,7 @@ counts, no settings.
 copy_loa_template("resources")     # a filled-in workbook to start from
 
 # The full specification: every sheet, every setting, every validation rule
-file.show(system.file("extdata", "loa-schema.md", package = "runAnalysisLocally"))
+file.show(system.file("extdata", "loa-schema.md", package = "analysiskitlocal"))
 ```
 
 Up to seven sheets. Only `analysis` is required; a missing or empty sheet means
@@ -528,7 +528,7 @@ validates, reshapes or writes.
 Every stage of the engine is exported as a `ck_*` function — `ck_fast_analysis()`,
 `ck_exclude_choices()`, `ck_add_choice_combinations()`,
 `ck_pivot_variable_x_group()` and the rest — so an unusual analysis can be
-assembled from the pieces. `ls("package:runAnalysisLocally")` lists them.
+assembled from the pieces. `ls("package:analysiskitlocal")` lists them.
 
 ### `setup_project_folders()`
 
@@ -598,7 +598,7 @@ also what makes the run slow.
 
 ```
 R/
-  runAnalysisLocally-package.R  package documentation
+  analysiskitlocal-package.R  package documentation
   run_local.R                   the run_* entry points and input coercion
   checks.R                      the readiness rules and check_analysis_inputs()
   read_dataset.R                dataset ingestion and profiling

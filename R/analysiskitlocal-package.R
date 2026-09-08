@@ -1,4 +1,4 @@
-#' runAnalysisLocally: the Analysis Kit workflow as a package
+#' analysiskitlocal: the Analysis Kit workflow as a package
 #'
 #' Turns a research dataset and a List of Analysis (LoA) workbook into a
 #' validated, MMC-branded results workbook, without an interface.
@@ -51,7 +51,7 @@
 #'
 #' ```r
 #' file.edit(system.file("extdata", "loa-schema.md",
-#'                       package = "runAnalysisLocally"))
+#'                       package = "analysiskitlocal"))
 #' copy_loa_template("resources")   # a workbook to start from
 #' ```
 #'

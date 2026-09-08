@@ -1,4 +1,4 @@
-Package: runAnalysisLocally
+Package: analysiskitlocal
 Title: Run MMC 4Mi Analyses Locally from a Dataset and a List of Analysis
 Version: 0.1.0
 Authors@R: c(
@@ -36,6 +36,6 @@ Suggests:
     writexl
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/iAthman83/runAnalysisLocally
-BugReports: https://github.com/iAthman83/runAnalysisLocally/issues
+URL: https://github.com/mixedmigrationcentre/run-analysis-locally
+BugReports: https://github.com/mixedmigrationcentre/run-analysis-locally/issues
 Config/roxygen2/version: 8.1.0
