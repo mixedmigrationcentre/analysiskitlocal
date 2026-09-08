@@ -33,6 +33,21 @@ jobs:
         with:
           extra-packages: any::pkgdown, local::.
           needs: website
+          # Hard dependencies only (Depends/Imports/LinkingTo), not Suggests.
+          #
+          # The action's default is '"all"', which includes Suggests - and two
+          # of ours, analysistools and cleaningtools, exist only on GitHub
+          # (impact-initiatives/*). pak looks for them on CRAN, does not find
+          # them, and the whole solve fails before anything is installed:
+          #   "Can't find package called analysistools, cleaningtools"
+          # The "any::pkgdown / any::sessioninfo: dependency conflict" lines
+          # that follow are that same failure, not a separate problem.
+          #
+          # Nothing in the site build needs the optional set: every example
+          # that reaches the survey engine is wrapped in \dontrun, and there
+          # are no vignettes. Skipping it also spares CI a source build of
+          # survey and srvyr on every push.
+          dependencies: '"hard"'
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
